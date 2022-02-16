@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Top from './Top';
 import { 
   Grid,
   Box,
@@ -46,7 +47,7 @@ function App() {
     
   });
 
- console.log(itemData);
+//  console.log(itemData);
 
   React.useEffect(() => {
     async function fetchProducts() {
@@ -64,6 +65,8 @@ function App() {
       index: null,
       userEvaluating: false
     }
+    
+
     viewObject.userEvaluating = (viewingState.userEvaluating && key === viewingState.id) ? false : true;
     viewObject.id = key;
     viewObject.index = key - 1;
@@ -73,74 +76,71 @@ function App() {
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* Browser Window */}
-        <Grid container>
-          {/* Top Bar */}
-          <Grid xs={8}>
-            <Card>
+    <>
+      <div className="App">
+        <header className="App-header">
+          {/* Browser Window */}
+          <Grid container>
 
-              <CardContent>
-               
+            {/* <Top itemData={itemData}/> */}
+            {viewingState.userEvaluating ? <Top itemData={itemData}/> : null}
+            
+            {/* Top Bar */}
+            {/* <Grid xs={8}>
               <Typography variant="h6" component="div">
-                      {itemData.name}
+                {itemData.name}
               </Typography>
               <Typography variant="subtitle1" component="div">
-                      {itemData.slogan}
+                {itemData.slogan}
               </Typography>
               <Typography variant="body1" component="div">
-                      {itemData.description}
+                {itemData.description}
               </Typography>
-              </CardContent>
-      
-            </Card>
-          </Grid>
-          <Grid xs={4}>
-            <Card>
-
-              <CardContent>
-               
-                <img width='100' src={itemData.imgUrl} alt={itemData.name} />
+            </Grid>
+            <Grid xs={4}>
+              <img width="100" src={itemData.imgUrl} alt={itemData.name} />
               <Typography variant="subtitle1" component="div">
-              Ƀ{itemData.default_price}
+                Ƀ{itemData.default_price}
               </Typography>
+            </Grid> */}
+            
 
-              </CardContent>
-      
-            </Card>
+            {/* Body */}
+            <Grid container xs={12}>
+              {productData.map((item, index) => (
+                <Grid key={index} item xs={6}>
+                  <Card sx={{ maxWidth: 300 }}>
+                    <CardContent>
+                      👨‍🚀
+                      <Typography variant="h6" component="div">
+                        {item.name}
+                      </Typography>
+                      <Typography
+                        sx={{ mb: 1.5 }}
+                        variant="subtitle1"
+                        color="text.secondary"
+                      >
+                        {item.slogan}
+                      </Typography>
+                      {/* <Typography variant="body2">{item.description}</Typography> */}
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        onClick={() => handleLearnMore(index + 1)}
+                        size="small"
+                        variant="contained"
+                      >
+                        Learn More
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
-
-
-          {/* Body */}
-          <Grid container xs={12}>
-            {productData.map((item, index) => (
-              <Grid key={index} item xs={6}>
-                <Card sx={{ maxWidth: 300 }}>
-                  <CardContent>
-                    👨‍🚀
-                    <Typography variant="h6" component="div">
-                      {item.name}
-                    </Typography>
-                    <Typography
-                      sx={{ mb: 1.5 }}
-                      variant="subtitle1"
-                      color="text.secondary"
-                    >
-                      {item.slogan}
-                    </Typography>
-                    <Typography variant="body2">{item.description}</Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button onClick={ () => handleLearnMore(index+1)} size="small" variant="contained">Learn More</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
-      </header>
-    </div>
+        </header>
+      </div>
+    </>
   );
 }
 
