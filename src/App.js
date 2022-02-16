@@ -32,17 +32,17 @@ function App() {
       // console.log(result.results[0].photos[0].url);
       let currentIndex = viewingState.index;
 
-      itemObj.imgUrl = result.results[0].photos[0].url;
+      itemObj.imgUrl = result.results[0].photos[0].url ? result.results[0].photos[0].url : "https://www.fillmurray.com/200/200";
       itemObj.name = productData[currentIndex].name;
       itemObj.slogan = productData[currentIndex].slogan;
       itemObj.description = productData[currentIndex].description;
       itemObj.category = productData[currentIndex].category;
       itemObj.default_price = productData[currentIndex].default_price;
       
-      setItemData(itemObj)
+      setItemData(itemObj);
     }
     if(viewingState.userEvaluating){
-      fetchItem()
+      fetchItem();
     }
     
   });
@@ -65,8 +65,6 @@ function App() {
       index: null,
       userEvaluating: false
     }
-    
-
     viewObject.userEvaluating = (viewingState.userEvaluating && key === viewingState.id) ? false : true;
     viewObject.id = key;
     viewObject.index = key - 1;
@@ -82,27 +80,18 @@ function App() {
           {/* Browser Window */}
           <Grid container>
 
-            {/* <Top itemData={itemData}/> */}
-            {viewingState.userEvaluating ? <Top itemData={itemData}/> : null}
-            
             {/* Top Bar */}
-            {/* <Grid xs={8}>
-              <Typography variant="h6" component="div">
-                {itemData.name}
-              </Typography>
-              <Typography variant="subtitle1" component="div">
-                {itemData.slogan}
-              </Typography>
-              <Typography variant="body1" component="div">
-                {itemData.description}
-              </Typography>
+            <Grid item xs={12}>
+              <Card>
+                    <CardContent>
+                        🤠 COWDOY FUN TIM STOAR 🤠
+                    </CardContent>
+              </Card>
             </Grid>
-            <Grid xs={4}>
-              <img width="100" src={itemData.imgUrl} alt={itemData.name} />
-              <Typography variant="subtitle1" component="div">
-                Ƀ{itemData.default_price}
-              </Typography>
-            </Grid> */}
+            {viewingState.userEvaluating ? <Top itemData={itemData}/> : null}
+
+            
+
             
 
             {/* Body */}
@@ -111,7 +100,7 @@ function App() {
                 <Grid key={index} item xs={6}>
                   <Card sx={{ maxWidth: 300 }}>
                     <CardContent>
-                      👨‍🚀
+                      🐎
                       <Typography variant="h6" component="div">
                         {item.name}
                       </Typography>

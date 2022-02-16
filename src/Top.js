@@ -8,7 +8,6 @@ export default function Top({itemData}){
 
     return(
         <Grid container>
-      
             <Grid xs={8}>
                 <Typography variant="h6" component="div">
                     {itemData.name}
